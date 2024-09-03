@@ -1,9 +1,18 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { registerModules } from '@/shared/helper/register-modules'
+import users from '@/modules/users'
 
-export const privateRoutes: RouteRecordRaw[] = [
+const privateRoutes: RouteRecordRaw = {
+  path: '/',
+  component: () => import('../layouts/DefaultLayout.vue'),
+  children: []
+}
+
+registerModules(
   {
-    path: '/',
-    component: () => import('../layouts/DefaultLayout.vue'),
-    children: []
-  }
-]
+    users
+  },
+  privateRoutes
+)
+
+export { privateRoutes }

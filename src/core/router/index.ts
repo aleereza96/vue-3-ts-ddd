@@ -2,10 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { privateRoutes } from './privateRoutes'
 import { publicRoutes } from './publicRoutes'
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes: [
-    ...privateRoutes,
     ...publicRoutes,
     {
       path: '/:pathMatch(.*)*',
@@ -24,3 +23,7 @@ export const router = createRouter({
     }
   ]
 })
+
+router.addRoute(privateRoutes)
+
+export {router}
